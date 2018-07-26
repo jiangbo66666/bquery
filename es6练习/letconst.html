@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+<input type="button" value="按钮">
+<input type="button" value="按钮2">
+<input type="button" value="按钮3">
+<script>
+  const btns = document.querySelectorAll('input')
+  for (let i = 0; i < btns.length; i++) {
+    btns[i].onclick = () => console.log(i)
+  }
+  const a = {}
+  a.name = 'zs'
+  console.log(a)
+  const b = () => "哈哈"
+  console.log(b())
+</script>

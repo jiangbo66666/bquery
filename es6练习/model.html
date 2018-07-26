@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <table id="tb"></table>
+</body>
+<script>
+  const arr = [{
+      name: 'haha',
+      age: 18,
+      gender: '男'
+    },
+    {
+      name: 'hehe',
+      age: 23,
+      gender: '女'
+    },
+    {
+      name: 'heihei',
+      age: 33,
+      gender: '中'
+    },
+  ]
+  let a = () => `222`;
+  let str  = ``
+  for (let i = 0;i < arr.length ; i++){
+    str +=`<tr> 
+      <td>${arr[i].name}</td>
+      <td>${arr[i].age}</td>
+      <td>${arr[i].gender}</td>
+      <td>${a()}</td>
+      </tr>`
+  }
+  const td = document.getElementById('tb');
+  td.innerHTML = str;
+</script>
+
+</html>

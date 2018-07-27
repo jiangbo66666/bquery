@@ -1,3 +1,4 @@
+// 复制文件内部的文字
 const fs = require('fs');
 var str = ''
 fs.readFile('./files/2.txt','utf-8',(err,data)=>{

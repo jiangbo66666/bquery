@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <input type="button" value="提交" id="btn">
+</body>
+<script>
+  const btn = document.getElementById('btn');
+  btn.onclick = function(){
+    setTimeout(()=>{
+      this.style.backgroundColor = "red";
+    },500)
+  }
+
+  //注意箭头函数的指向永远指向他的上一层级，所以下面的code是不能实现的。
+  // btn.onclick = () => {
+  //   setTimeout(()=>{
+  //     console.log(this)
+  //   },500)
+  // }
+
+</script>
+</html>

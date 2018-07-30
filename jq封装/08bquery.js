@@ -29,12 +29,17 @@
   bquery.fn = bquery.prototype = {
     constructor: bquery,
     init: init,
-
+    each:function(callback){
+      each(this,callback)
+      return this
+    }
   }
 
 
   //让init继承bquery原型上面的属性，在以后每次的构造函数的过程中能够继承原型上面的属性
   bquery.fn.init.prototype = bquery.fn
 
+  // 暴露b和bquery
+  window.b = window.bquery = bquery
 
 })()

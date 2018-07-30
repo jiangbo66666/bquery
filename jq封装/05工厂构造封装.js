@@ -23,14 +23,14 @@
     [].push.apply(this, document.querySelectorAll(selector))
     return this
   }
-
+  // 方便外部扩展
   $.fn = $.prototype = {
     App:App,
     each: function (callback) {
       each(this, callback)
     }
   }
-  $.fn.App.prototype = $.fn 
+  $.fn.App.prototype = $.fn
   console.log($.fn.App.prototype === $.prototype )
 
   window.$ = $ 

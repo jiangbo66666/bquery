@@ -18,13 +18,13 @@
   <p>p</p>
   <p>p</p>
   <p>p</p>
-  <script src="./05工厂构造封装.js"></script>
+  <script src="./07再次构建bquery.js"></script>
   <script>
     
     // $.fn = {};
-    
-    $.fn.method = '考虑到垃圾上单'
-    var obj = $('p,span');
+
+    b.fn.method = '考虑到垃圾上单'
+    var obj = b('p,span');
 
 
     obj.each(function(item , i){
@@ -32,7 +32,7 @@
       console.log(this)
     })
     console.log(obj.method)
-    console.log(obj)
+    console.dir(b.fn.init)
   </script>
 </body>
 

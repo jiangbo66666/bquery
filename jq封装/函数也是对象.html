@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>div</div>
+  <div>div</div>
+  <span>span</span>
+  <span>span</span>
+  <div>div</div>
+  <p>p</p>
+  <p>p</p>
+  <p>p</p>
+  <p>p</p>
+  <script src="./05工厂构造封装.js"></script>
+  <script>
+    
+    // $.fn = {};
+    
+    $.fn.method = '考虑到垃圾上单'
+    var obj = $('p,span');
+
+
+    obj.each(function(item , i){
+      item.style.border = '1px solid pink'
+      console.log(this)
+    })
+    console.log(obj.method)
+    console.log(obj)
+  </script>
+</body>
+
+</html>

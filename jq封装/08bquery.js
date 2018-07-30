@@ -4,6 +4,7 @@
     var length = array && array.length
     return typeof (length == 'number') && length > 0
   }
+  
   //封装each方法
   function each(array, callback) {
     if (isArraylike(array)) {
@@ -14,7 +15,6 @@
     return array
   }
 
-  
   //消除new符号  借用工厂函数来构造
   function bquery(selector) {
     return new bquery.fn.init(selector)
@@ -34,7 +34,6 @@
       return this
     }
   }
-
 
   //让init继承bquery原型上面的属性，在以后每次的构造函数的过程中能够继承原型上面的属性
   bquery.fn.init.prototype = bquery.fn

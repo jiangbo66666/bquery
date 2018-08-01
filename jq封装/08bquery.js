@@ -1,4 +1,4 @@
-(function () {
+(function (window) {
   //封装判断是否为数组的函数
   function isArraylike(array) {
     var length = array && array.length
@@ -41,4 +41,4 @@
   // 暴露b和bquery
   window.b = window.bquery = bquery
 
-})()
+})(window)

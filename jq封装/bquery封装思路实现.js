@@ -15,7 +15,7 @@
       return array
     }
 
-    //
+    //封装选择器函数
     function init(selector) {
       var lists = document.querySelectorAll(selector);
       [].push.apply(this, lists)
@@ -24,7 +24,7 @@
     function bquery(selector) {
       return new bquery.fn.init(selector)
     }
-
+    
     bquery.fn = bquery.prototype = {
       constructor: bquery,
       init: init,

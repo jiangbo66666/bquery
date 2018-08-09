@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+  <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="./node_modules/art-template/lib/template-web.js"></script>
+  <script src="./node_modules/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <form class="container">
+    
+  </form>
+
+  <script type="text/template" id='tmp'>
+    <h1>编辑英雄</h1>
+    <hr>
+    <label>
+      <div>名字</div>
+    </label>
+    <input type="text" name="name" class="form-control" value='<%=message[0].name %>'> 男
+    <input type="radio" name="gender" value="男" <%=message[0].gender=='男'?'checked':'' %> > 女
+    <input type="radio" name="gender" value="女" <%=message[0].gender=='女'?'checked':'' %>>
+    <div class="btn btn-success">编辑 </div>
+  
+  </script>
+  <script>
+    const program = new URLSearchParams(location.search)
+    const id = program.get('id')
+    // console.log(id)
+    axios.get('http://localhost:3000/api/getone?id='+id).then(function(response){
+      if(response.status==200 && response.data.err_code==0){
+        // console.log(response)
+        const html = template('tmp',response.data)
+        $('.container').html(html)
+      }
+    })
+    
+    $('.container').on('click','.btn',function(){
+      const name = $('[name=name]').val()
+      const gender = $('[checked=checked]').val()
+      console.log(name)
+      console.log(gender)
+      // axios.post('http://localhost:3000/api/updatehero',{name:name,gender:gender,id:id}).then((response)=>{
+      //   console.log(response)
+      //   if(response.status==200 && response.data.err_code==0){
+      //     location.href = './index.html'
+      //   }
+      // })
+    })
+    
+  </script>
+</body>
+
+</html>

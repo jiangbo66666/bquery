@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+  <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="./node_modules/art-template/lib/template-web.js"></script>
+  <script src="./node_modules/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <form class="container">
+    
+      <h1>新增</h1>
+      <hr>
+    <label>
+      <div>名字</div>
+    </label>
+    <input type="text" name="name" class="form-control"> 男
+    <input type="radio" name="gender" value="男"> 女
+    <input type="radio" name="gender" value="女">
+    <div class="btn btn-success">添加英雄 </div>
+  </form>
+  <script>
+    $('.btn').on('click', () => {
+      console.log(11)
+      axios.post('http://localhost:3000/api/addhero', $('.container').serialize()).then(function (result) {
+        console.log(result)
+        location.href='./index.html'
+      }).catch(function(err){
+        console.log(err)
+      })
+    })
+  </script>
+</body>
+
+</html>

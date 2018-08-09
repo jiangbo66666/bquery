@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <button v-on:click='sayhi'>点我呀</button>
+    <button v-on:click="changename('波哥哥')">点我换人</button>
+    <button v-on:click="getevent($event)">点我查看e</button>
+    <a href="http://www.baidu.com" @click.prevent>点我去百度</a>
+    <input type="text" @keyup.13='submit'>
+  </div>
+  <script src="./vue2.js"></script>
+
+  <script>
+    let vm = new Vue({
+      el:'#app',
+      data:{
+        name:'haha'
+      },
+      methods: {
+        sayhi(){
+          console.log('hello')
+        },
+        changename(str){
+          this.name = str
+        },
+        getevent(e){
+          console.log(e)
+        },
+        submit(){
+          console.log('狼来了')
+        }
+      }
+    })
+  </script>
+</body>
+</html>

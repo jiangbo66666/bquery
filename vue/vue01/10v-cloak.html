@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+  [v-cloak]{
+    display: none;
+  }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <p v-cloak>{{name}}</p>
+
+  </div>
+
+  <script src="./vue2.js"></script>
+  <script>
+    let vm = new Vue({
+      el:'#app',
+      data:{
+        name:'波哥哥'
+      }
+    })
+  </script>
+</body>
+</html>

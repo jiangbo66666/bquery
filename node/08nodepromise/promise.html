@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="../07node/heroexample/server/node_modules/jquery/dist/jquery.min.js"></script>
+</head>
+
+<body>
+  <script>
+    function axios(url) {
+      let p = new Promise(function (reslove, reject) {
+        $.get(url, function (data) {
+          reslove(data)
+        })
+      })
+      return p
+    }
+    var arr = []
+
+    // axios("https://cnodejs.org/api/v1/topics?tab=ask")
+    //   .then(function (data) {
+    //     arr.push(data)
+    //     return axios("https://cnodejs.org/api/v1/topics?tab=share")
+    //   }).then(function(data){
+    //     arr.push(data)
+    //     console.log(arr)
+    //   })
+
+    // Promise.all([
+    //   axios("https://cnodejs.org/api/v1/topics?tab=good"),
+    //   axios("https://cnodejs.org/api/v1/topics?tab=share"),
+    //   axios("https://cnodejs.org/api/v1/topics?tab=ask"),
+    //   axios("https://cnodejs.org/api/v1/topics?tab=job")
+    // ]).then(function(data){
+    //   console.log(data)
+    // })
+
+    Promise.race([
+      new Promise(function(reslove,reject){
+        setTimeout(() => {
+          reject('haha')
+        }, 200);
+      }),
+      axios("https://cnodejs.org/api/v1/topics?tab=good"),
+      axios("https://cnodejs.org/api/v1/topics?tab=share"),
+      axios("https://cnodejs.org/api/v1/topics?tab=ask"),
+      axios("https://cnodejs.org/api/v1/topics?tab=job")
+    ]).then(function(data){
+      console.log(data)
+    }).catch(function(data){
+      console.log(data)
+    })
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <p v-for="(item,index) in user" :key="index">{{item.name}}:{{item.age}}</p>
+    <h4 v-for="value in contor" >{{value}}</h4>
+  </div>
+  <script src="./vue2.js"></script>
+  <script>
+    let vm = new Vue({
+      el:'#app',
+      data:{
+        user:[
+          {name:'哈哈',age:12},
+          {name:'嘎嘎',age:14},
+          {name:'嘿嘿',age:22}
+        ],
+        contor:{
+          name1:'波哥哥',
+          name2:'波叔叔',
+          name3:'波爷爷'
+        }
+      }
+    })
+  </script>
+</body>
+</html>

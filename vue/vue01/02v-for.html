@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+
+    <p v-for="item in user">{{item.name}} : {{item.age}}</p>
+  </div>
+  <script src="./vue2.js"></script>
+  <script>
+    let vm = new Vue({
+      el:'#app',
+      data:{
+        user:[
+          {name:'波哥哥',age:18},
+          {name:'波神',age:22}
+        ]
+      }
+    })
+
+  </script>
+</body>
+</html>

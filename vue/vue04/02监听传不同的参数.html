@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue2.js"></script>
+  <script src="./vue-router.js"></script>
+</head>
+<body>
+  <div id="app">
+    <router-link to="/index">首页</router-link>
+    <router-link to="/product/2">产品2</router-link>
+    <router-link to="/product/3">产品3</router-link>
+    
+    <router-view></router-view>
+    <!-- <dd></dd> -->
+  </div>
+
+  <script>
+
+    let index = {
+      template:'<div>这里是首页</div>',
+      
+      }
+
+    let product = {
+      template:'<div>这里是产品页面{{$route.params.pid}} {{fullname}}</div>',
+     data () {
+       return {
+        fullname:''
+       }
+     },
+      watch: {
+        $route (to,from){
+          if(to.params.pid==2){
+            this.fullname='222'
+          }else if(to.params.pid==3){
+            this.fullname='333'
+          }
+        }
+      }
+    }
+
+    let router = new VueRouter({
+      routes:[
+        {path:'/index',component:index},
+        {path:'/product/:pid',component:product},
+      ]
+    })
+
+
+
+    let vm = new Vue({
+      el:'#app',
+      router,
+      data:{
+      },
+    })
+  </script>
+</body>
+</html>

@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="./vue2.js"></script>
+  <script src="./axios.js"></script>
   <style>
     #app {
       width: 600px;
@@ -44,7 +45,7 @@
       <!-- ref属性表示对dom的引用，它的值可以随便取，但是不能重复 -->
       <input type="text" ref="iptid" v-model='newid' v-myfocus> 品牌名称:
       <input type="text" v-model='newname'>
-      <input type="button" value="添加" @click='adddata()'>
+      <input type="button" value="添加" @click='add'>
     </div>
 
     <div class="add">
@@ -60,11 +61,11 @@
           <th>创立时间</th>
           <th>操作</th>
         </tr>
-        <tr v-for='(item,index) in newlist' :key='index'>
+        <tr v-for='item in newlist' :key='item.id'>
           <td>{{item.id}}</td>
           <td>{{item.name}}</td>
-          <td>{{item.ctime|fmttime('/')}}</td>
-          <td><a href="" @click.prevent='deldata(index)'>删除</a></td>
+          <td>{{item.ctime}}</td>
+          <td><a href="" @click.prevent='del(item.id)'>删除</a></td>
         </tr>
       </table>
     </div>
@@ -72,13 +73,6 @@
 </body>
 
 <script>
-  Vue.filter('fmttime',function(time,seprator){
-    let y = time.getFullYear();
-    let m = time.getMonth();
-    let d = time.getDate();
-    return y+seprator+m+seprator+d
-  })
-
   Vue.directive('myfocus',{
     inserted(el,binding){
       console.log(el)
@@ -92,40 +86,48 @@
       newid:'',
       newname:'',
       keword:'',
-      list: [{
-          id: 1,
-          name: 'CC',
-          ctime: new Date()
-        },
-        {
-          id: 2,
-          name: 'LV',
-          ctime: new Date()
-        },
-        {
-          id: 3,
-          name: 'AA',
-          ctime: new Date()
-        },
-      ]
+      list:[]
     },
     methods: {
-      deldata(index){
-        this.list.splice(index,1)
+      async del(index){
+        await this.deldata(index),
+        this.newname='' 
+        this.getdata()
+      },
+      async add(){
+        await this.addlist(),
+        this.newname='',
+        this.getdata()
+      },
+      async deldata(index){
+        return axios.get('http://www.liulongbin.top:3005/api/delproduct/'+index)
       },
       adddata(){
-        // console.log(this.newid)
         this.list.push({id:this.newid,name:this.newname,ctime:new Date()})
+      }, 
+      getdata(){
+        axios.get('http://www.liulongbin.top:3005/api/getprodlist')
+        .then(res=>{
+          this.list=res.data.message.sort((a,b)=>{
+            return b.id-a.id
+          })
+          res.data.message.map((val)=>{
+            return val.ctime = val.ctime.slice(0,10)
+          })
+        })
+      },
+      async addlist(){
+        return axios.post('http://www.liulongbin.top:3005/api/addproduct',{name:this.newname})
       }
     },
     computed: {
       newlist(){
-        return this.list.filter((value)=>value.name.indexOf(this.keword)!==-1,)
-      }
+        return this.list.filter((value)=>value.name.indexOf(this.keword.trim())!==-1,)
+      },
+    },
+    mounted () {
+      this.getdata()
     }
-    // mounted () {
-    //   this.$refs.iptid.focus()
-    // }
   })
 </script>
 

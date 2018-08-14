@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .bo-enter,.bo-leave-to{
+      padding-left: 100px;
+    }
+    .bo-enter-active,.bo-leave-active{
+      transition: all 2s
+    }
+    .bo-enter-to,.bo-leave{
+      padding-left: 0
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <transition name="bo" >
+      <div v-show='isshow'>哈哈哈</div>
+    </transition>
+    <button @click='isshow=!isshow'>移动</button>
+  </div>
+
+  <script src="./vue2.js"></script>
+  <script>
+    let vm = new Vue({
+      el:'#app',
+      data:{
+        isshow:true
+      }
+    })
+  </script>
+</body>
+</html>

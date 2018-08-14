@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="./vue2.js"></script>
+  <script src="./vue-router.js"></script>
+</head>
+
+<body>
+  <div id="app">
+   <div>
+      <router-link to="/index">首页</router-link>
+      <router-link to="/product/1">产品</router-link>
+      <router-link to="/product/2">作品</router-link>
+      <router-view></router-view>
+   </div>
+  </div>
+  <script>
+    let index = {
+      template: `<div>我是首页</div>`
+    }
+    let pro_a = {
+      template: `<div>产品a</div>`
+    }
+    let product = {
+      template: `<div>
+        我是产品页{{idname}}<button @click='proa'>点我</button>
+        <router-view></router-view>
+        </div>`,
+      data () {
+        return {
+          idname:''
+        }
+      },
+      mounted () {
+        // console.log(this.$route.params.id)
+        if(this.$route.params.id==1){
+          this.idname=1
+        }else{
+          this.idname=1
+        }
+        
+        // this.idname=this.$route.params.id
+      },  
+      methods: {
+        proa(){
+          this.$router.push({name:'proa'})
+        }
+      },
+      watch: {
+        $route (to, from){
+          if(to.params.id==1){
+            this.idname=1
+            this.proa()
+          }else if(to.params.id==2){
+            this.idname=2
+            this.proa()
+          }
+        },
+      }
+    }
+    var router = new VueRouter({
+      routes: [{
+          name:index,
+          path: '/index',
+          component: index
+        },
+        {
+          path: '/product/:id',
+          component: product,
+          children: [{name:'proa',path: 'pro_a',component: pro_a}],
+        },
+        {
+          path:'*',
+          redirect: {name:index}
+        }
+      ]
+    })
+
+    let vm = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      router,
+    })
+  </script>
+</body>
+
+</html>
